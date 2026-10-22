@@ -6,7 +6,7 @@ import(
 	"os"
 	
 
-	_ "github.com/jackc/pgx/v5/stdlib"
+	_ "github.com/jackc/pgx/v5/stdlib" //driver for postgress 
 
 )
 var DB *sql.DB
@@ -32,7 +32,7 @@ DB.Close()
 return err
 }
 
-fmt.Println("you are connected with database",DB)
+fmt.Println("\033[32myou are connected with database\033[0m",DB)
 return nil
 	
 

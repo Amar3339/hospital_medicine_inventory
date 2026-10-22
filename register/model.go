@@ -3,7 +3,7 @@ package register
 import (
 	
 )
-type registerRequest struct{
+type RegisterRequest struct{
 	Business_name string `json:"business_name" binding:"required"`
 	Username string `json:"username" binding:"required"`
 	Address string `json:"address" binding:"required"`
