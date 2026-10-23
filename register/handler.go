@@ -2,6 +2,7 @@ package register
 
 import (
 	"net/http"
+	"fmt"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,6 +17,7 @@ if err!=nil{
 }
 err=RegisterUser(req)
 if err!=nil{
+	fmt.Println("hello",err)
 	c.JSON(400,gin.H{"message":"failed to register"})
 	return 
 }
