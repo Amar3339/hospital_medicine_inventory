@@ -3,7 +3,7 @@ package register
 import (
 	"errors"
 	"fmt"
-	"regexp"
+	"regexp" //used for phone number validation 
 
 	"golang.org/x/crypto/bcrypt"
 )
