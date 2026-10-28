@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="logo">
+        <img src="logo.png" alt="hospital-logo">
+
+    </div>
+    <div >
+        <form id="company">
+            <label for="company_name">company name</label>
+            <input type="text" name="company_name" id="company_name">
+            <br>
+            <br>
+            <label for="company_address">company address</label>
+            <input type="text" name="company_address" id="company_address">
+            <br>
+            <br>
+            <label for="phone_number">phone_number</label>
+            <input type="number" name="phone_number" id="phone_number">
+            <br>
+            <br>
+            <label for="email">company email</label>
+            <input type="email" name="email" id="emai">
+            <br>
+            <br>
+            <label for="reg_id">registrationid</label>
+            <input type="text" name="reg_id" id="reg_id">
+            <br>
+            <br>
+            <label for="bsuiness_unit">business_unit</label>
+            <input type="text" name="business_unit" id="business_unit">
+            <br>
+            <br>
+            <label for="Description">Description</label>
+<textarea name="description" id="description"></textarea>
+<br>
+<br>
+<button id="submit">submit</button>
+
+
+
+        </form>
+        <a href="./dashboard.html">Back To Dashboard</a>
+    </div>
+    <script>
+        const  company= document.getElementById("company")
+        company.addEventListener("submit" ,async function (e) {
+            e.preventDefault()
+        // alert("event is workking")
+            // const comp=document.getElementById("company_name").value
+
+            // alert(comp)
+            const data={
+                a: company.elements["company_name"].value,
+                
+                b: company.elements["company_address"].value,
+                c: company.elements["phone_number"].value,
+                d: company.elements["email"].value,
+                e: company.elements["business_unit"].value,
+                f:company.elements["description"].value
+            };
+            try{
+            const response=await fetch("http://8080/#",{
+            method:"POST",
+            headers:{
+             "Content-Type":"application/json",
+
+            },
+            body:json.stringify(data)
+        })
+            
+            }
+            catch (err){
+                console.err("failed",err)
+            }
+
+            
+        })
+    </script>
+</body>
+</html>

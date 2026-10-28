@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login">
+    <form id="LoginForm">
+        <label for="identifier">username/business_name/email</label>
+        <input type="text" id="identifier" name="identifier" placeholder="e=username/business_name/email">
+        <br><br>
+        <label for="password">password</label>
+        <input type="password" id="password" name="password" required>
+        <br><br>
+        
+        <button type="submit">login</button>
+        <br><br>
+        <button type="button">forget_password</button>
+        <br><br>
+       
+    </form>
+     <a href="./register.html"><button>Register</button></a>
+    </div>
+    <script>
+        const form =document.getElementById("LoginForm");
+        form.addEventListener("submit",async function(event) {
+            event.preventDefault()
+            const identifier=document.getElementById("identifier").value.trim();
+            const password=document.getElementById("password").value;
+            try{
+                const respose =await fetch ("http://localhost:8080/login",{
+                    method:"POST",
+                    headers:{
+                        "content-type":"application/json"
+                    },
+                    body:JSON.stringify({
+                        identifier:identifier,
+                        password:password
+                    })
+                });
+                const data =await respose.text();
+                console.log("backend",data);
+                if (respose.ok){
+                     window.location.href = "dashboard.html";
+
+                }
+                else{
+                    alert("failed login")
+                }
+               
+                //  window.location.href="./dashboard.html"
+            }
+            catch (error){
+                console.error("loginerror:",error);
+             }
+            
+            
+       } );
+    </script>
+</body>
+</html>
