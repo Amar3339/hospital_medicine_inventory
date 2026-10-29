@@ -1,7 +1,8 @@
 package business
 
 import (
-"medical_inventory/db"
+	"medical_inventory/db"
+
 
 )
 
@@ -40,14 +41,14 @@ if err!=nil{
 	return  nil
 
 }
-func CompanyExist(x Company) error{
-	query:=`select exits(select 1 from company where business_id=$1 or registration_id=$2)
+func CompanyExist(x Company) (bool,error){
+	query:=`select exixts(select 1 from company where business_unit=$1 or registration_id=$2)
 	`
 	var exits bool
-	err:=db.DB.QueryRow(query,x.BusinessUnit,x.Registrationid ).Scan(&exits)
+	 err:=db.DB.QueryRow(query,x.BusinessUnit,x.Registrationid ).Scan(&exits)
 	if err!=nil{
-		return  err
-
+		return  false,err
 	}
-	return nil
+	return exits,nil
+
 }
